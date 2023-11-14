@@ -1,0 +1,29 @@
+{
+    "7c581f05-25d5-4a71-8970-d6b3ea61fe93": {
+      "_id": "7c581f05-25d5-4a71-8970-d6b3ea61fe93",
+      "title": "Big House Marina",
+      "pricePerMonth": "2100",
+      "description": "A big house for your whole family. Don't miss to buy a house with three bedrooms.",
+      "category": "Midcentury Modern Style",
+      "imageUrl": "https://www.compass.com/m/6efc673541ad9b819f353c0580c4364b80078330_img_1_d9a3c/origin.jpg",
+      "address": "New-Jersey 166 Marina Boulevard"
+    },
+    "7c6197af-1e0b-4512-b400-d46250c846e9": {
+      "_id": "7c6197af-1e0b-4512-b400-d46250c846e9",
+      "title": "Family House Comfort",
+      "pricePerMonth": "3400",
+      "description": "It has the best comfort you will ever ask for. With two bedrooms, it is great for your family.",
+      "category": "Split-Level Style",
+      "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/179489660.jpg?k=2029f6d9589b49c95dcc9503a265e292c2cdfcb5277487a0050397c3f8dd545a&o=&hp=1",
+      "address": "New York 123 Main St."
+    },
+    "5f321bc7-9fe0-4ab0-bc26-6cf188642339": {
+      "_id": "5f321bc7-9fe0-4ab0-bc26-6cf188642339",
+      "title": "Grand House",
+      "pricePerMonth": "4000",
+      "description": "This luxurious house is everything you will need. It is just excellent.",
+      "category": "Cottage Style",
+      "imageUrl": "https://i.pinimg.com/originals/a6/f5/85/a6f5850a77633c56e4e4ac4f867e3c00.jpg",
+      "address": "Canada 456 Elm St."
+    }
+  }

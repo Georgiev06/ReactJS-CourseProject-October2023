@@ -2,10 +2,10 @@ import React from "react";
 
 export function Header() {
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    <nav className="bg-white rounded-lg shadow-4xl border-gray-200 dark:bg-gray-900">
       <div className="w-screen flex flex-wrap items-center justify-between mx-auto pl-7 pr-7 p-4">
         <a
-          href="https://ibb.co/WcqCDfZ"
+          href="#"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img
