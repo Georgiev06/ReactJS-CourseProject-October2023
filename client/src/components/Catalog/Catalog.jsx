@@ -3,12 +3,15 @@ import { useEffect, useState } from "react";
 import * as houseService from "../../services/houseService";
 
 import CatalogItem from "./CatalogItem/CatalogItem";
-import CreateHouseModal from "../CreateHouse/CreateHouseModal";
+import CreateHouseModal from "../Create/CreateHouseModal";
+import DetailsHouseModal from "../Details/DetailsHouseModal";
 
 export default function Catalog() {
 
   const [houses, setHouses] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedHouse, setSelectedHouse] = useState(null);
 
   useEffect(() => {
     houseService
@@ -19,6 +22,11 @@ export default function Catalog() {
 
   const createHouseClickHandler = () => {
     setShowCreateModal(true);
+  };
+
+  const detailsHouseClickHandler = async (houseId) => {
+    setSelectedHouse(houseId);
+    setShowDetailsModal(true);
   };
 
   const hideCreateHouseModal = () => {
@@ -42,6 +50,8 @@ export default function Catalog() {
       <div>
       {showCreateModal && <CreateHouseModal hideCreateHouseModal={hideCreateHouseModal} createHouseHandler={createHouseHandler}/>}
 
+      {showDetailsModal && <DetailsHouseModal hideDetailsHouseModal={() => setShowDetailsModal(false)} houseId={selectedHouse}/>}
+
       {houses.map((house) => (
         <CatalogItem
           key={house._id}
@@ -49,6 +59,7 @@ export default function Catalog() {
           title={house.title}
           description={house.description}
           imageUrl={house.imageUrl}
+          detailsHouseClickHandler={detailsHouseClickHandler}
         />
       ))}
 

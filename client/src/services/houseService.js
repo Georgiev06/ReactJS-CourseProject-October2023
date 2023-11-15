@@ -33,3 +33,10 @@ export const create = async (data) => {
 
     return result;
 };
+
+export const getOne = async (houseId) => {
+    const response = await fetch(`${baseUrl}/${houseId}`);
+    const result = await response.json();
+
+    return result;
+}
