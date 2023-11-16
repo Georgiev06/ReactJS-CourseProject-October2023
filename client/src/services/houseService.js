@@ -40,3 +40,13 @@ export const getOne = async (houseId) => {
 
     return result;
 }
+
+export const remove = async (houseId) => {
+    const response = await fetch(`${baseUrl}/${houseId}`, {
+        method: 'DELETE'
+    });
+    
+    const result = await response.json();
+
+    return result;
+}

@@ -5,6 +5,7 @@ import * as houseService from "../../services/houseService";
 import CatalogItem from "./CatalogItem/CatalogItem";
 import CreateHouseModal from "../Create/CreateHouseModal";
 import DetailsHouseModal from "../Details/DetailsHouseModal";
+import DeleteHouseModal from "../Delete/DeleteHouseModal";
 
 export default function Catalog() {
 
@@ -12,6 +13,7 @@ export default function Catalog() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedHouse, setSelectedHouse] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
     houseService
@@ -44,13 +46,29 @@ export default function Catalog() {
     setHouses(state => [...state, newHouse])
 
     setShowCreateModal(false);
-  } 
+  }
+  
+  const deleteHouseClickHandler = async (houseId) => {
+    setSelectedHouse(houseId);
+    setShowDeleteModal(true);
+  }
+
+  const deleteHouseHandler = async () => {
+    const result = await houseService.remove(selectedHouse);
+
+    setHouses(state => state.filter(house => house._id !== selectedHouse));
+
+    setShowDeleteModal(false);
+  }
+
 
   return (
       <div>
       {showCreateModal && <CreateHouseModal hideCreateHouseModal={hideCreateHouseModal} createHouseHandler={createHouseHandler}/>}
 
       {showDetailsModal && <DetailsHouseModal hideDetailsHouseModal={() => setShowDetailsModal(false)} houseId={selectedHouse}/>}
+
+      {showDeleteModal && <DeleteHouseModal hideDeleteHouseModal={() => setShowDeleteModal(false)} deleteHouseHandler={deleteHouseHandler}/>}
 
       {houses.map((house) => (
         <CatalogItem
@@ -60,6 +78,7 @@ export default function Catalog() {
           description={house.description}
           imageUrl={house.imageUrl}
           detailsHouseClickHandler={detailsHouseClickHandler}
+          deleteHouseClickHandler={deleteHouseClickHandler}
         />
       ))}
 
