@@ -22,17 +22,9 @@ export default function Catalog() {
       .catch((err) => console.log(err));
   }, []);
 
-  const createHouseClickHandler = () => {
-    setShowCreateModal(true);
-  };
-
   const detailsHouseClickHandler = async (houseId) => {
     setSelectedHouse(houseId);
     setShowDetailsModal(true);
-  };
-
-  const hideCreateHouseModal = () => {
-    setShowCreateModal(false);
   };
 
   const createHouseHandler = async (e) => {
@@ -42,6 +34,8 @@ export default function Catalog() {
 
     //TODO: Fix the ptoblem with the data...
     const newHouse = await houseService.create(data);
+
+    console.log(newHouse)
 
     setHouses(state => [...state, newHouse])
 
@@ -64,7 +58,7 @@ export default function Catalog() {
 
   return (
       <div className="flex flex-wrap max-w-[80em] justify-center mx-auto gap-10 mt-20"> 
-      {showCreateModal && <CreateHouseModal hideCreateHouseModal={hideCreateHouseModal} createHouseHandler={createHouseHandler}/>}
+      {showCreateModal && <CreateHouseModal createHouseHandler={createHouseHandler}/>}
 
       {showDetailsModal && <DetailsHouseModal hideDetailsHouseModal={() => setShowDetailsModal(false)} houseId={selectedHouse} deleteHouseClickHandler={deleteHouseClickHandler}/>}
 
@@ -81,13 +75,13 @@ export default function Catalog() {
         />
       ))}
 
-      <button
+      {/* <button
         className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
         onClick={createHouseClickHandler}
       >
         Add new house
-      </button>
+      </button> */}
 
     </div>
   );
