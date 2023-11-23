@@ -3,6 +3,7 @@ export default function DeleteHouseModal({
     deleteHouseHandler
 }) {
   return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onClick={hideDeleteHouseModal}>
         <div className="relative p-4 w-full max-w-md max-h-full">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <button
@@ -63,5 +64,6 @@ export default function DeleteHouseModal({
             </div>
           </div>
         </div>
+      </div>
   );
 }

@@ -32,10 +32,7 @@ export default function Catalog() {
 
     const data = Object.fromEntries(new FormData(e.currentTarget));
 
-    //TODO: Fix the ptoblem with the data...
     const newHouse = await houseService.create(data);
-
-    console.log(newHouse)
 
     setHouses(state => [...state, newHouse])
 
@@ -54,7 +51,6 @@ export default function Catalog() {
 
     setShowDeleteModal(false);
   }
-
 
   return (
       <div className="flex flex-wrap max-w-[80em] justify-center mx-auto gap-10 mt-20"> 

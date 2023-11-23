@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { Header } from "./components/Header/Header";
@@ -13,6 +13,13 @@ import Logout from "./components/Logout/Logout"
 import About from "./components/About/About"
 
 function App() {
+
+  const [auth, setAuth] = useState({});
+
+  const loginSubmitHandler = (values) => {
+    console.log(values);
+  } 
+
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <Header />
@@ -22,7 +29,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/houses" element={<Catalog />} />
           <Route path="/house/create" element={<CreateHouseModal />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login loginSubmitHandler={loginSubmitHandler} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/about" element={<About />} />
