@@ -1,31 +1,29 @@
-import useForm from "../../hooks/useForm";
+import { useForm } from "../../hooks/useForm";
 
 export default function CreateHouseModal({
-  createHouseHandler,
+  createSubmitHandler
 }) {
 
-  const { values, onChange, onSubmit } = useForm(createHouseHandler, {
-    name: '',
-    pricePerMouth: '',
+  const { values, changeHandler, onSubmit } = useForm({
+    title: '',
+    pricePerMonth: '',
     address: '',
     imageUrl: '',
     category: '',
     description: '',
-  });
-
-  console.log(values);
+  }, createSubmitHandler);
 
   return (
     <form className="flex flex-col justify-between p-4 md:p-5 mx-[46em]" onSubmit={onSubmit}>
       <div className="relative z-0 w-full mb-6 group">
         <input
-          type="name"
-          name="name"
+          type="title"
+          name="title"
           className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
           placeholder=" "
           required=""
-          onChange={onChange}
-          value={values.name}
+          value={values.title}
+          onChange={changeHandler}
         />
         <label
           htmlFor="floating_name"
@@ -37,18 +35,18 @@ export default function CreateHouseModal({
       <div className="relative z-0 w-full mb-6 group">
         <input
           type="number"
-          name="pricePerMouth"
+          name="pricePerMonth"
           className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
           placeholder=" "
           required=""
-          onChange={onChange}
-          value={values.pricePerMouth}
+          value={values.pricePerMonth}
+          onChange={changeHandler}
         />
         <label
-          htmlFor="floating_pricePerMouth"
+          htmlFor="pricePerMonth"
           className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
         >
-          Price Per Mouth
+          Price Per Month
         </label>
       </div>
       <div className="relative z-0 w-full mb-6 group">
@@ -58,8 +56,8 @@ export default function CreateHouseModal({
           className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
           placeholder=" "
           required=""
-          onChange={onChange}
-          value={values.pricePerMouth}
+          value={values.address}
+          onChange={changeHandler}
         />
         <label
           htmlFor="address"
@@ -76,8 +74,8 @@ export default function CreateHouseModal({
             className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required=""
-            onChange={onChange}
             value={values.imageUrl}
+            onChange={changeHandler}
           />
           <label
             htmlFor="imageUrl"
@@ -93,8 +91,8 @@ export default function CreateHouseModal({
             className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required=""
-            onChange={onChange}
             value={values.category}
+            onChange={changeHandler}
           />
           <label
             htmlFor="category"
@@ -112,8 +110,8 @@ export default function CreateHouseModal({
             className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required=""
-            onChange={onChange}
             value={values.description}
+            onChange={changeHandler}
           />
           <label
             htmlFor="description"

@@ -1,13 +1,13 @@
-import useForm from "../../hooks/useForm";
+import { useForm } from "../../hooks/useForm";
 
 export default function Login({
     loginSubmitHandler
 }) {
 
-  const {values, onChange, onSubmit} = useForm(loginSubmitHandler, {
+  const {values, changeHandler, onSubmit} = useForm({
     email: '',
     password: '',
-  });
+  }, loginSubmitHandler);
 
   return (
   <section id="login-page" className="auth">
@@ -25,7 +25,7 @@ export default function Login({
           name="email"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="name@flowbite.com"
-          onChange={onChange}
+          onChange={changeHandler}
           value={values.email}
           />
       </div>
@@ -39,9 +39,9 @@ export default function Login({
         <input
           type="password"
           id="password"
-          name="email"
+          name="password"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          onChange={onChange}
+          onChange={changeHandler}
           value={values.password}
           />
       </div>

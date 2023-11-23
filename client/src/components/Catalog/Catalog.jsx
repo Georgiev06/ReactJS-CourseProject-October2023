@@ -26,18 +26,6 @@ export default function Catalog() {
     setSelectedHouse(houseId);
     setShowDetailsModal(true);
   };
-
-  const createHouseHandler = async (e) => {
-    e.preventDefault();
-
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-
-    const newHouse = await houseService.create(data);
-
-    setHouses(state => [...state, newHouse])
-
-    setShowCreateModal(false);
-  }
   
   const deleteHouseClickHandler = async (houseId) => {
     setSelectedHouse(houseId);
@@ -54,7 +42,7 @@ export default function Catalog() {
 
   return (
       <div className="flex flex-wrap max-w-[80em] justify-center mx-auto gap-10 mt-20"> 
-      {showCreateModal && <CreateHouseModal createHouseHandler={createHouseHandler}/>}
+      {showCreateModal && <CreateHouseModal/>}
 
       {showDetailsModal && <DetailsHouseModal hideDetailsHouseModal={() => setShowDetailsModal(false)} houseId={selectedHouse} deleteHouseClickHandler={deleteHouseClickHandler}/>}
 
