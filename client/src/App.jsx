@@ -19,7 +19,11 @@ import About from "./components/About/About";
 function App() {
   const navigate = useNavigate();
 
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState(() => {
+    localStorage.removeItem('accessToken');
+
+    return {};
+  });
 
   const loginSubmitHandler = async (values) => {
     const result = await authService.login(values.email, values.password);
