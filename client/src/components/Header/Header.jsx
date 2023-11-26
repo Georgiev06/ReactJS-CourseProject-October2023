@@ -46,7 +46,7 @@ export function Header() {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="font-medium flex flex-col justify-center items-center mr-[47em] p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <Link
                 to="/"
@@ -75,7 +75,7 @@ export function Header() {
             </li>
 
             {isAuthenticated && (
-              <div id="user">
+              <div className="flex gap-7 justify-center items-center" id="user">
                 <li>
                   <Link
                     to="/house/create"
@@ -92,13 +92,21 @@ export function Header() {
                     Logout
                   </Link>
                 </li>
-
-                <span>Hello, {username}!</span>
+                <div className="flex items-center gap-2">
+                  <img
+                    className="w-10 h-10 rounded-full"
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                    alt=""
+                  />
+                  <div className="font-bold leading-normal text-gray-600/75 dark:text-gray-500/75">
+                    <span>{username}</span>
+                  </div>
+                </div>
               </div>
             )}
 
             {!isAuthenticated && (
-              <div id="quest">
+              <div className="flex gap-7" id="quest">
                 <li>
                   <Link
                     to="/login"

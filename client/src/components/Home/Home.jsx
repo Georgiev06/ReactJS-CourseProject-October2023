@@ -1,7 +1,9 @@
-import Carousel from "../Carousel/Carousel"
+import Carousel from "../Carousel/Carousel";
 
 export default function Home() {
-    return(
-        <Carousel/>
-    ); 
+  return (
+    <div>
+      <Carousel />
+    </div>
+  );
 }
