@@ -43,7 +43,7 @@ export default function Catalog() {
     <div>
       <div className="absolute top-[15%] left-[8%]">
         <h2 className="text-center text-3xl font-bold leading-normal text-gray-600/50 dark:text-gray-500/50">
-          About us
+          All Houses
         </h2>
 
         <hr className="pl-[96em] max-w-sm mx-auto shadow-2xl mt-2" />
@@ -78,7 +78,7 @@ export default function Catalog() {
           />
         ))}
 
-        {houses.length === 0 && <h3 className="text-center">No houses yet</h3>}
+        {houses.length === 0 && <h3 className="text-center text-2xl font-bold leading-normal text-gray-600/50 dark:text-gray-500/50">No houses yet</h3>}
 
         {/* <button
         className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
