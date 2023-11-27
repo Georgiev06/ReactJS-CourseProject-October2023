@@ -1,0 +1,82 @@
+import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import * as authService from "../services/authService"
+import * as houseService from "../services/houseService"
+
+
+const AuthContext = createContext();
+
+AuthContext.displayName = 'AuthContext';
+
+export const AuthProvider = ({
+    children,
+}) => {
+
+    const navigate = useNavigate();
+
+    const [auth, setAuth] = useState(() => {
+      localStorage.removeItem('accessToken');
+  
+      return {};
+    });
+  
+    const loginSubmitHandler = async (values) => {
+      const result = await authService.login(values.email, values.password);
+  
+      setAuth(result);
+      
+      localStorage.setItem('accessToken', result.accessToken);
+  
+      navigate("/");
+    };
+  
+    const registerSubmitHandler = async (values) => {
+      if (values.password === values.repeatPassword) {
+        const result = await authService.register(values.email, values.password, values.repeatPassword);
+  
+        setAuth(result);
+  
+        localStorage.setItem('accessToken', result.accessToken);
+      
+        navigate("/");
+      }
+      else{
+        throw new Error();
+      }
+    }
+  
+    const logoutHandler = () => {
+      setAuth({});
+  
+      localStorage.removeItem('accessToken');
+    }
+  
+    const createSubmitHandler = async (values) => {
+      try {
+        await houseService.create(values);
+  
+        navigate("/houses");
+      } catch (error) {
+        console.log(err);
+      }
+    };
+  
+    const values = { 
+      loginSubmitHandler,
+      registerSubmitHandler,
+      logoutHandler,
+      createSubmitHandler,
+      username: auth.username || auth.email,
+      email: auth.email,
+      isAuthenticated: !!auth.email
+    }
+
+    return(
+        <AuthContext.Provider value={values}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+export default AuthContext;

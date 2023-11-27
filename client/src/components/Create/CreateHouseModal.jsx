@@ -1,8 +1,10 @@
+import AuthContext from "../../contexts/authContext";
 import { useForm } from "../../hooks/useForm";
+import { useContext } from "react";
 
-export default function CreateHouseModal({
-  createSubmitHandler
-}) {
+export default function CreateHouseModal() {
+
+  const { createSubmitHandler } = useContext(AuthContext);
 
   const { values, changeHandler, onSubmit } = useForm({
     title: '',
