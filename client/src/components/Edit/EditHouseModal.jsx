@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import AuthContext from "../../contexts/authContext";
 import { useForm } from "../../hooks/useForm";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as houseService from "../../services/houseService"
 
 export default function EditHouseModal() {
