@@ -66,6 +66,7 @@ export const AuthProvider = ({
       createSubmitHandler,
       username: auth.username || auth.email,
       email: auth.email,
+      userId: auth._id,
       isAuthenticated: !!auth.email
     }
 
