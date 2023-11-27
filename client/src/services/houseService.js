@@ -25,3 +25,9 @@ export const remove = async (houseId) => {
 
     return result;
 };
+
+export const edit = async (houseId, houseData) => {
+  const result = await request.put(`${baseUrl}/${houseId}`, houseData);
+
+  return result;
+};

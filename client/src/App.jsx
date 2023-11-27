@@ -12,6 +12,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Logout from "./components/Logout/Logout";
 import About from "./components/About/About";
+import EditHouseModal from "./components/Edit/EditHouseModal";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/houses" element={<Catalog />} />
             <Route path="/house/create" element={<CreateHouseModal />}/>
+            <Route path="/houses/:houseId/edit" element={<EditHouseModal/>}/>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />

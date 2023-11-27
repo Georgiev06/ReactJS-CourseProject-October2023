@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from "react";
 
 import * as houseService from "../../services/houseService";
 import AuthContext from "../../contexts/authContext";
+import { Link } from "react-router-dom";
+import { pathToUrl } from "../../utils/pathUtils";
 
 export default function DetailsHouseModal({
   hideDetailsHouseModal,
@@ -12,6 +14,8 @@ export default function DetailsHouseModal({
 
   const { userId } = useContext(AuthContext);
 
+  const isOwner = userId === houseDetails._ownerId;
+  
   useEffect(() => {
     houseService
       .getOne(houseId)
@@ -22,8 +26,6 @@ export default function DetailsHouseModal({
   const deleteHouseHendler = () => {
     deleteHouseClickHandler(houseId);
   };
-
-  const isOwner = userId === houseDetails._ownerId;
 
   return (
     <div
@@ -88,12 +90,13 @@ export default function DetailsHouseModal({
                     Delete
                   </button>
 
-                  <button
+                  <Link
                     type="button"
-                    className="w-24 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
+                    to={pathToUrl("/houses/:houseId/edit", { houseId })}
+                    className="text-center w-24 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
                   >
                     Edit
-                  </button>
+                  </Link>
                 </div>
               </div>
             )}
