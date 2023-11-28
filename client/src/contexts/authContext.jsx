@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import * as authService from "../services/authService"
@@ -59,10 +59,10 @@ export const AuthProvider = ({
     };
   
     const values = { 
+      createSubmitHandler,
       loginSubmitHandler,
       registerSubmitHandler,
       logoutHandler,
-      createSubmitHandler,
       username: auth.username || auth.email,
       email: auth.email,
       userId: auth._id,

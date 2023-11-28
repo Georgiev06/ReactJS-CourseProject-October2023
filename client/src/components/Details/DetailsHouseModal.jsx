@@ -3,7 +3,6 @@ import { useState, useEffect, useContext } from "react";
 import * as houseService from "../../services/houseService";
 import AuthContext from "../../contexts/authContext";
 import { Link } from "react-router-dom";
-import { pathToUrl } from "../../utils/pathUtils";
 
 export default function DetailsHouseModal({
   hideDetailsHouseModal,
@@ -92,7 +91,7 @@ export default function DetailsHouseModal({
 
                   <Link
                     type="button"
-                    to={pathToUrl(`/houses/${houseId}/edit`)}
+                    to={`/houses/${houseId}/edit`}
                     className="text-center w-24 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
                   >
                     Edit

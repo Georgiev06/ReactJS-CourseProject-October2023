@@ -10,7 +10,7 @@ export default function Carousel() {
         {/* Item 1 */}
         <div className="hidden duration-700 ease-in-out" data-carousel-item>
           <img
-            src="https://www.home-designing.com/wp-content/uploads/2023/04/Luxury-Home-In-Spain-1024x704.jpg"
+            src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/179489660.jpg?k=2029f6d9589b49c95dcc9503a265e292c2cdfcb5277487a0050397c3f8dd545a&o=&hp=1"
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />

@@ -15,7 +15,7 @@ export default function Login() {
 
   return (
     <div>
-      <div className="absolute top-[15%] left-[8%]">
+      <div className="absolute top-[15%] left-[9.5%]">
       <h2 className="text-center text-3xl font-bold leading-normal text-gray-600/50 dark:text-gray-500/50">
         Login
       </h2>
