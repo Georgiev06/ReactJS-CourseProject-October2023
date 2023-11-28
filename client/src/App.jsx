@@ -13,19 +13,20 @@ import Register from "./components/Register/Register";
 import Logout from "./components/Logout/Logout";
 import About from "./components/About/About";
 import EditHouseModal from "./components/Edit/EditHouseModal";
+import AuthGuard from "./components/Guards/AuthGuard";
 
 function App() {
   return (
     <AuthProvider>
       <div className="flex flex-col min-h-screen justify-between">
         <Header />
-        {/* <Carousel /> */}
+        
         <main id="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/houses" element={<Catalog />} />
-            <Route path="/house/create" element={<CreateHouseModal />}/>
-            <Route path="/houses/:houseId/edit" element={<EditHouseModal/>}/>
+            <Route path="/house/create" element={<AuthGuard><CreateHouseModal /></AuthGuard> }/>
+            <Route path="/houses/:houseId/edit" element={<AuthGuard><EditHouseModal/></AuthGuard> }/>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />

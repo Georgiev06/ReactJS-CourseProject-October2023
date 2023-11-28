@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useForm } from "../../hooks/useForm";
 import { useEffect, useState } from "react";
 import * as houseService from "../../services/houseService"
 
@@ -23,7 +22,11 @@ export default function EditHouseModal() {
     })
   }, [houseId])
 
-  const editHouseSubmitHandler = async (values) => {
+  const editHouseSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    const values = Object.fromEntries(new FormData(e.currentTarget));
+
     try {
         await houseService.edit(houseId, values);
 
@@ -34,7 +37,12 @@ export default function EditHouseModal() {
     }
   }
 
-  const { values, changeHandler, onSubmit } = useForm(house, editHouseSubmitHandler)
+  const onChange = (e) => {
+    setHouse(state => ({
+      ...state,
+      [e.target.name]: e.target.value
+    }));
+  };
 
   return (
     <div>
@@ -45,7 +53,7 @@ export default function EditHouseModal() {
 
       <form
         className="flex flex-col justify-between p-4 md:p-5 mx-[46em] mt-20"
-        onSubmit={onSubmit}
+        onSubmit={editHouseSubmitHandler}
       >
         <div className="relative z-0 w-full mb-6 group">
           <input
@@ -54,8 +62,8 @@ export default function EditHouseModal() {
             className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required=""
-            value={values.title}
-            onChange={changeHandler}
+            value={house.title}
+            onChange={onChange}
           />
           <label
             htmlFor="floating_name"
@@ -71,8 +79,8 @@ export default function EditHouseModal() {
             className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required=""
-            value={values.pricePerMonth}
-            onChange={changeHandler}
+            value={house.pricePerMonth}
+            onChange={onChange}
           />
           <label
             htmlFor="pricePerMonth"
@@ -88,8 +96,8 @@ export default function EditHouseModal() {
             className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required=""
-            value={values.address}
-            onChange={changeHandler}
+            value={house.address}
+            onChange={onChange}
           />
           <label
             htmlFor="address"
@@ -106,8 +114,8 @@ export default function EditHouseModal() {
             className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required=""
-            value={values.imageUrl}
-            onChange={changeHandler}
+            value={house.imageUrl}
+            onChange={onChange}
           />
           <label
             htmlFor="imageUrl"
@@ -123,8 +131,8 @@ export default function EditHouseModal() {
             className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required=""
-            value={values.category}
-            onChange={changeHandler}
+            value={house.category}
+            onChange={onChange}
           />
           <label
             htmlFor="category"
@@ -142,8 +150,8 @@ export default function EditHouseModal() {
               className="block py-2.5 px-0 w-[30em] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required=""
-              value={values.description}
-              onChange={changeHandler}
+              value={house.description}
+              onChange={onChange}
             />
             <label
               htmlFor="description"

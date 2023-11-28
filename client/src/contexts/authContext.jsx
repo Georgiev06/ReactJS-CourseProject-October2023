@@ -5,7 +5,6 @@ import * as authService from "../services/authService"
 import * as houseService from "../services/houseService"
 import usePersistedState from "../hooks/usePersistedState";
 
-
 const AuthContext = createContext();
 
 AuthContext.displayName = 'AuthContext';
