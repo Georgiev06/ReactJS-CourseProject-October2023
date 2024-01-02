@@ -54,7 +54,7 @@ export const AuthProvider = ({
   
         navigate("/houses");
       } catch (error) {
-        console.log(err);
+        console.log(error);
       }
     };
   
