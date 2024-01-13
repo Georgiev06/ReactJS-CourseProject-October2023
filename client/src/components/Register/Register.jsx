@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../../contexts/authContext";
 import { useForm } from "../../hooks/useForm";
 
@@ -7,15 +7,58 @@ export default function Register() {
 
   const { values, changeHandler, onSubmit } = useForm(
     {
-      email: "",
-      password: "",
-      repeatPassword: "",
+      email: '',
+      password: '',
+      repeatPassword: '',
     },
     registerSubmitHandler
   );
 
-  console.log(values.password);
-  console.log(values.repeatPassword);
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+    repeatPassword: '',
+  });
+
+  const emailValidator = () => {
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    console.log(emailRegex.test(values.email))
+    if (!emailRegex.test(values.email)) {
+      setErrors(state => ({
+        ...state,
+        email: 'Please enter a valid email address!'
+      }));
+    }
+    else {
+      if (errors.email) {
+        setErrors(state => ({
+          ...state,
+          email: '',
+        }));
+      }
+    }
+  }
+
+  const passwordValidator = () => {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+    console.log(passwordRegex.test(values.password))
+    console.log(values.password)
+
+    if (!passwordRegex.test(values.password)) {
+      setErrors(state => ({
+        ...state,
+        password: 'Your password must contain minimum eight characters, at least one letter, one number and one special character!'
+      }));
+    }
+    else {
+      if (errors.password) {
+        setErrors(state => ({
+          ...state,
+          password: '',
+        }));
+      }
+    }
+  }
 
   return (
     <div>
@@ -52,12 +95,16 @@ export default function Register() {
               type="text"
               id="email-address-icon"
               name="email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className={errors.email !== '' ? 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500' : 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}
               placeholder="name@mail.com"
               onChange={changeHandler}
               value={values.email}
+              onBlur={emailValidator}
             />
           </div>
+          {errors.email && (
+            <p className="text-red-600">{errors.email}</p>
+            )}
         </div>
         <div className="mb-5">
           <label
@@ -70,11 +117,15 @@ export default function Register() {
             type="password"
             id="password"
             name="password"
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            className={errors.password !== '' ? 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500 dark:shadow-sm-light' : 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'}
             required=""
             onChange={changeHandler}
             value={values.password}
+            onBlur={passwordValidator}
           />
+          {errors.password && (
+            <p className="text-red-600">{errors.password}</p>
+            )}
         </div>
         <div className="mb-5">
           <label
@@ -92,9 +143,7 @@ export default function Register() {
             onChange={changeHandler}
             value={values.repeatPassword}
           />
-        </div>
-
-        {values.password.length > 0 &&
+          {values.password.length > 0 &&
         values.repeatPassword.length > 0 &&
         values.password !== values.repeatPassword ? (
           <p className="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -103,9 +152,10 @@ export default function Register() {
         ) : (
           ""
         )}
-
+        </div>
         <button
           type="submit"
+          disabled={Object.values(errors).some(x => x)}
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Register new account

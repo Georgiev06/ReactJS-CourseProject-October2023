@@ -9,9 +9,9 @@ export default function CreateHouseModal() {
   const { values, changeHandler, onSubmit } = useForm({
     title: '',
     pricePerMonth: '',
-    address: '',
-    imageUrl: '',
-    category: '',
+    addresrl: '',
+    categs: '',
+    imageUory: '',
     description: '',
   }, createSubmitHandler);
 
@@ -28,7 +28,7 @@ export default function CreateHouseModal() {
     if (values.title.length < 4 || values.title.length > 21) {
       setErrors(state => ({
         ...state,
-        title: 'Title should be between 5 or 20!'
+        title: 'The name of the house must be between 5 or 20 letters!'
       }));
     }
     else {
@@ -46,7 +46,7 @@ export default function CreateHouseModal() {
     if (values.pricePerMonth < 50) {
       setErrors(state => ({
         ...state,
-        pricePerMonth: 'Price per month should be more than 50!'
+        pricePerMonth: 'Price per month should be more than 50$!'
       }));
     }
     else {
@@ -60,10 +60,10 @@ export default function CreateHouseModal() {
   }
 
   const addressValidator = () => {
-    if (values.address.length < 10 || values.address.length > 100) {
+    if (values.address.length < 10 || values.address.length > 90) {
       setErrors(state => ({
         ...state,
-        address: 'Address should be between 10 and 100!'
+        address: 'Address should be between 10 and 90 characters!'
       }));
     }
     else {
@@ -80,7 +80,7 @@ export default function CreateHouseModal() {
     if (values.category.length < 3 || values.category.length > 30) {
       setErrors(state => ({
         ...state,
-        category: 'Category should be between 3 and 13!'
+        category: 'Category should be between 3 and 30 letters!'
       }));
     }
     else {
@@ -94,10 +94,10 @@ export default function CreateHouseModal() {
   }
 
   const imageUrlValidator = () => {
-    if (values.imageUrl.length < 12 || values.imageUrl.length > 120) {
+    if (values.imageUrl.length < 12 || values.imageUrl.length > 2048) {
       setErrors(state => ({
         ...state,
-        imageUrl: 'ImageUrl should be between 12 and 120!'
+        imageUrl: 'ImageUrl should be between 12 and 2048 characters!'
       }));
     }
     else {
@@ -114,7 +114,7 @@ export default function CreateHouseModal() {
     if (values.description.length < 2 || values.description.length > 220) {
       setErrors(state => ({
         ...state,
-        description: 'Description should be between 2 and 220!'
+        description: 'Description should be between 2 and 220 letters long!'
       }));
     }
     else {
@@ -267,7 +267,7 @@ export default function CreateHouseModal() {
       <button
               type="submit"
               className=" p-2 md:p-3 w-[30em] mx-[0.2em] focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-              disabled={Object.values(errors).some(x => x)}
+              disabled={Object.values(errors).some(x => x) || Object.values(values).map(x => x !== '')} 
               >
               Save
             </button>
