@@ -65,7 +65,7 @@ export default function About() {
                 <h1 className="p-[0em] text-4xl font-extrabold text-white-900 dark:text-white">
                   Our Commitment to You
                 </h1>
-                <p className="text-xl italic dfont-semibold text-white-600/75 dark:text-white-500/75 p-[1em]">
+                <p className="text-xl italic font-semibold text-white-600/75 dark:text-white-500/75 p-[1em]">
                   From the moment you browse our listings to the day you check
                   out, HouseRentals is devoted to making your stay
                   exceptional. We strive to be more than just a house rental

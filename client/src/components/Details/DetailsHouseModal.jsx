@@ -69,7 +69,7 @@ export default function DetailsHouseModal({
               {houseDetails.title}
             </h5>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Price Per Month: <strong>{houseDetails.pricePerMonth}</strong>
+              Price Per Month: <strong>${houseDetails.pricePerMonth}</strong>
             </p>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               Category: <strong>{houseDetails.category}</strong>

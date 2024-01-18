@@ -60,6 +60,23 @@ export default function Register() {
     }
   }
 
+  const repeatPasswordValidator = () => {
+    if (values.repeatPassword !== values.password) {
+      setErrors(state => ({
+        ...state,
+        repeatPassword: 'Passwords don\'t match!'
+      }));
+    }
+    else {
+      if (errors.repeatPassword) {
+        setErrors(state => ({
+          ...state,
+          repeatPassword: '',
+        }));
+      }
+    }
+  }
+
   return (
     <div>
       <div className="absolute top-[15%] left-[9.5%]">
@@ -138,12 +155,16 @@ export default function Register() {
             type="password"
             id="repeatPassword"
             name="repeatPassword"
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            className={values.repeatPassword !== values.password ? 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500 dark:shadow-sm-light' : 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'}
             required=""
             onChange={changeHandler}
             value={values.repeatPassword}
+            onBlur={repeatPasswordValidator}
           />
-          {values.password.length > 0 &&
+          {errors.repeatPassword && (
+            <p className="text-red-600">{errors.repeatPassword}</p>
+            )}
+          {/* {values.password.length > 0 &&
         values.repeatPassword.length > 0 &&
         values.password !== values.repeatPassword ? (
           <p className="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -151,7 +172,7 @@ export default function Register() {
           </p>
         ) : (
           ""
-        )}
+        )} */}
         </div>
         <button
           type="submit"
