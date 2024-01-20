@@ -78,7 +78,11 @@ export default function Catalog() {
           />
         ))}
 
-        {houses.length === 0 && <h3 className="pr-[0.4em] text-center text-2xl font-bold leading-normal text-gray-600/50 dark:text-gray-500/50">No houses yet</h3>}
+        {houses.length === 0 && (
+          <h3 className="pr-[0.4em] text-center text-2xl font-bold leading-normal text-gray-600/50 dark:text-gray-500/50">
+            No houses yet
+          </h3>
+        )}
       </div>
     </div>
   );
