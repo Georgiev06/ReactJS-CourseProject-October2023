@@ -14,29 +14,47 @@ import Logout from "./components/Logout/Logout";
 import About from "./components/About/About";
 import EditHouseModal from "./components/Edit/EditHouseModal";
 import AuthGuard from "./components/Guards/AuthGuard";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   return (
-    <AuthProvider>
-      <div className="flex flex-col min-h-screen justify-between">
-        <Header />
-        
-        <main id="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/houses" element={<Catalog />} />
-            <Route path="/house/create" element={<AuthGuard><CreateHouseModal /></AuthGuard> }/>
-            <Route path="/houses/:houseId/edit" element={<AuthGuard><EditHouseModal/></AuthGuard> }/>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </main>
+    <ErrorBoundary>
+      <AuthProvider>
+        <div className="flex flex-col min-h-screen justify-between">
+          <Header />
 
-        <Footer />
-      </div>
-    </AuthProvider>
+          <main id="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/houses" element={<Catalog />} />
+              <Route
+                path="/house/create"
+                element={
+                  <AuthGuard>
+                    <CreateHouseModal />
+                  </AuthGuard>
+                }
+              />
+              <Route
+                path="/houses/:houseId/edit"
+                element={
+                  <AuthGuard>
+                    <EditHouseModal />
+                  </AuthGuard>
+                }
+              />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </main>
+
+          <Footer />
+        </div>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
+
 export default App;
