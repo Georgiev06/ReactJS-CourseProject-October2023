@@ -26,6 +26,10 @@ export default function DetailsHouseModal({
     deleteHouseClickHandler(houseId);
   };
 
+  if (Math.random() < 0.5) {
+    throw new Error('House details error')
+  }
+
   return (
     <div
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
